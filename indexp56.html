@@ -2,14 +2,23 @@
   
   <head>
         <script src="p5/p5.min.js"></script>
-  
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      overflow:hidden;
+    }
+  </style>
   </head>
 <body>
   <h1 id ="number"></h1>
+  <h1 id ="number1"></h1>
   <script>
   var w = window.innerWidth;
   var h = window.innerHeight;
   var ball = new ball(); //create a golbal object
+  var ball1 = new ball1();
+  var d;
     function setup() {
           createCanvas(w,h);
     }
@@ -18,7 +27,11 @@
       background(255);
       ball.show();
       ball.move();
+      ball1.show();
+      ball1.move();
+      ball1.collision();
     }
+    
     
     function ball(){
       this.x = 100;
@@ -28,7 +41,7 @@
         ellipse(this.x,this.y,50,50);
       }
       this.move = function() {
-        if ((keyIsDown(65)) && (this.x > 0)){
+        if ((keyIsDown(65)) && (this.x > 30)){
       this.x -= 10;          // move to the left
     }
       if ((keyIsDown(68)) && (this.x < w-50)) {  // need both condition inorder to work
@@ -37,10 +50,41 @@
       if ((keyIsDown(87)) && (this.y > 0)) {
         this.y -= 10;         // move up
       }
-      if ((keyIsDown(83)) && (this.y < h-50)) {
+      if ((keyIsDown(83)) && (this.y < h-150)) {
         this.y += 10;        // move down
     }
     document.getElementById("number").innerHTML = this.x + ", " + this.y;
+      }
+     
+    }
+    
+    function ball1(){
+      this.x = 200;
+      this.y = 200;
+      this.show = function() {
+        fill(color('blue'));
+        ellipse(this.x,this.y,50,50);
+      }
+      this.move = function() {
+        if ((keyIsDown(74)) && (this.x > 30)){
+      this.x -= 10;          // move to the left
+    }
+      if ((keyIsDown(76)) && (this.x < w-50)) {  // need both condition inorder to work
+        this.x += 10;      //move to the right
+      }
+      if ((keyIsDown(73)) && (this.y > 0)) {
+        this.y -= 10;         // move up
+      }
+      if ((keyIsDown(75)) && (this.y < h-150)) {
+        this.y += 10;        // move down
+    }
+    document.getElementById("number1").innerHTML = this.x + ", " + this.y;
+      }
+       this.collision = function(){
+         d = int(dist(this.x, this.y, ball.x, ball.y));
+        if(d<=40){
+          noLoop();
+        }
       }
     }
   </script>
