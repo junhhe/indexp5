@@ -12,8 +12,8 @@
   </head>
 <body>
   <h1 id ="number"></h1>
-  <h1 id ="number1"></h1>
-  <h1 id ="number2"></h1>
+  <h2 id ="number1"></h2>
+  <h3 id ="number2"></h3>
   <script>
   var w = window.innerWidth;
   var h = window.innerHeight;
@@ -21,6 +21,7 @@
   var ball1 = new ball1();
   var d; //distance btw two object
   var ball2 = new ball2();
+
 
     function setup() {
           createCanvas(w,h);
@@ -102,16 +103,47 @@
       }
        this.collision = function() {
          d = int(dist(this.x, this.y, ball.x, ball.y));
-         if((d<=40)&& (this.x > 30)&& (this.x< w-this.x)){
+         if((d<=40)&& (this.x > 30) && (this.x < w-this.x)){
           this.x = Math.floor(Math.random() * w);
          }
-         if((d<=40)&& (this.y > 0)&& (this.y < h-150)){
+         if((this.x < 0) || (this.x > w)){      //can't leave the screen
+        this.x = w/2;
+      }
+         if((d<=40)&& (this.y > 0) && (this.y < h-150)){
           this.y = Math.floor(Math.random() * h);
         }
+        
+        if((this.y < 0) || (this.y > h)){      //can't leave the screen
+        this.y = h/2;
+      }
+      
+      d = int(dist(this.x, this.y, ball1.x, ball1.y));
+         if((d<=40)&& (this.x > 30) && (this.x < w-this.x)){
+          this.x = Math.floor(Math.random() * w);
+         }
+         if((this.x < 0) || (this.x > w)){      //can't leave the screen
+        this.x = w/2;
+      }
+         if((d<=40)&& (this.y > 0) && (this.y < h-150)){
+          this.y = Math.floor(Math.random() * h);
+        }
+        
+        if((this.y < 0) || (this.y > h)){      //can't leave the screen
+        this.y = h/2;
+      }
          document.getElementById("number2").innerHTML = this.x + ", " + this.y;
        }
-    }
+       
+       }
+       
+    
+
+
+      
+      
+      
   </script>
 </body>
 </html>
+
 
