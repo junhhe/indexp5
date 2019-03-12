@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <style>
+      body {
+        overflow: hidden;
+        padding:0;
+        margin:0;
+      }
+    </style>
+  </head>
+  <body>
+  <script>
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  var posX = 100; //this is the x position of our player
+  var posY = 100; //this is the y position of our player
+  var userWidth = 50;
+  var userSpeed = 40;
+  
+  function setup(){
+    createCanvas(w,h);
+  }
+  
+    function draw() {    //draw function runs 60x
+      background(255);       // from 0-255=white
+      fill(color("#1589FF"));
+      strokeWeight(0);
+      rect(posX,posY,userWidth,userWidth,15);     //x,y,w,h,
+      if ((keyIsDown(65)) && (posX > 0)){
+      posX -= userSpeed;          // move to the left
+    }
+      if ((keyIsDown(68)) && (posX < w-userWidth)) {  // need both condition inorder to work
+        posX += userSpeed;      //move to the right
+      }
+      if ((keyIsDown(87)) && (posY > 0)) {
+        posY -= userSpeed;         // move up
+      }
+      if ((keyIsDown(83)) && (posY < h-userWidth)) {
+        posY += userSpeed;        // move down
+    }
+    }
+    
+    
+  </script>
+  </body>
+  </html>
